@@ -1,8 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
 
-// import { Container } from './styles';
+import {Container, Alert} from './styles';
 
 export default function Favoritos() {
-  return <View />;
+  return (
+    <Container>
+      <Alert>Em Construção</Alert>
+    </Container>
+  );
 }
