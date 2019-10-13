@@ -23,7 +23,7 @@ export const BookInfo = styled.View`
 
 export const BookImage = styled.Image`
   width: ${width * 0.35};
-  height: ${height * 0.4};
+  height: ${height * 0.3};
   border-radius: 8px;
 `;
 export const BookDetails = styled.View`

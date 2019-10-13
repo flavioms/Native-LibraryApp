@@ -49,7 +49,6 @@ export default function Details({navigation}) {
   if (!book || loading) {
     return <Loading />;
   }
-  console.tron.log(book);
 
   return (
     <Container>
@@ -105,7 +104,11 @@ export default function Details({navigation}) {
             <Price>
               <PriceCurrency>R$</PriceCurrency>
               <PriceGroup>
-                <PriceValue>35,99</PriceValue>
+                {book.saleInfo.saleability === 'FOR_SALE' ? (
+                  <PriceValue>{book.saleInfo.listPrice.amount}</PriceValue>
+                ) : (
+                  <PriceValue>0.00</PriceValue>
+                )}
                 <PriceCondition>COMPRA NO DÉBITO</PriceCondition>
               </PriceGroup>
               <ButtonBuy>
