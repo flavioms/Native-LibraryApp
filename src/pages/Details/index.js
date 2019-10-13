@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from 'react';
 import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {FindBook} from '~/controller/books/index';
+import ButtonOutline from '~/components/ButtonOutline';
 import {
   Container,
   Title,
@@ -14,8 +16,6 @@ import {
   BookTextValue,
   BookRating,
   BookDescription,
-  ButtonDownload,
-  ButtonDownloadText,
   BookFooter,
   FooterTitle,
   Price,
@@ -34,10 +34,7 @@ export default function Details({navigation}) {
 
   async function loadBook(id) {
     setLoading(true);
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}?projection=full&key=AIzaSyBZ-UKEfTEe3pjAIPjQ4-7j01VmyM7xXKA`,
-    );
-    const result = await response.json();
+    const result = await FindBook(id);
     setBook(result);
     setLoading(false);
   }
@@ -94,10 +91,9 @@ export default function Details({navigation}) {
             }
           </BookDescription>
 
-          <ButtonDownload>
-            <Icon name="download" size={18} color="#f7ab21" />
-            <ButtonDownloadText>Download Prévia</ButtonDownloadText>
-          </ButtonDownload>
+          <ButtonOutline name="download" color="#f7ab21" size={18}>
+            Download Prévia
+          </ButtonOutline>
 
           <BookFooter>
             <FooterTitle>E-book Kindle</FooterTitle>

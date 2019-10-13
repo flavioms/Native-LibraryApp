@@ -1,21 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useCallback} from 'react';
 import {FlatList} from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import LazyImage from '~/components/LazyImage';
-import BookPNG from '~/assets/books.png';
-import {
-  Container,
-  Title,
-  Loading,
-  Book,
-  BookInfo,
-  BookTitle,
-  BookCategories,
-  BookRating,
-  ButtonDownload,
-  ButtonDownloadText,
-} from './styles';
+import ItemBook from './ItemBook';
+import {AllBooks} from '~/controller/books/index';
+import {Container, Title, Loading} from './styles';
 
 export default function Loja({navigation}) {
   const [books, setBooks] = useState([]);
@@ -33,11 +21,7 @@ export default function Loja({navigation}) {
       return;
     }
     setLoading(true);
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=historia&langRestrict=pt&orderBy=relevance&projection=full&startIndex=${page}&key=AIzaSyBZ-UKEfTEe3pjAIPjQ4-7j01VmyM7xXKA`,
-    );
-    const {totalItems, items} = await response.json();
-
+    const {totalItems, items} = await AllBooks(pageNumber);
     setTotal(Math.floor(totalItems / 10));
     setBooks(shouldRefresh ? items : [...books, ...items]);
     setPage(pageNumber + 10);
@@ -65,43 +49,11 @@ export default function Loja({navigation}) {
         refreshing={refreshing}
         onViewableItemsChanged={handleViewableChanged}
         showsVerticalScrollIndicator={false}
-        viewabilityConfig={{viewAreaCoveragePercentThreshold: 30}}
+        viewabilityConfig={{viewAreaCoveragePercentThreshold: 20}}
         ListHeaderComponent={<Title>Popular</Title>}
         ListFooterComponent={loading && <Loading />}
         renderItem={({item}) => (
-          <Book
-            onPress={() =>
-              navigation.navigate('Details', {
-                bookId: item.id,
-              })
-            }>
-            <LazyImage
-              shouldLoad={viewable.includes(item.id)}
-              source={
-                item.volumeInfo.imageLinks
-                  ? {uri: item.volumeInfo.imageLinks.thumbnail}
-                  : BookPNG
-              }
-              smallSource={
-                item.volumeInfo.imageLinks
-                  ? {uri: item.volumeInfo.imageLinks.smallThumbnail}
-                  : BookPNG
-              }
-            />
-            <BookInfo>
-              <BookTitle>{item.volumeInfo.title}</BookTitle>
-              <BookCategories>{item.volumeInfo.categories}</BookCategories>
-              <BookRating
-                disabled={true}
-                maxStars={5}
-                rating={item.volumeInfo.averageRating}
-              />
-              <ButtonDownload>
-                <Icon name="download" size={18} color="#f7ab21" />
-                <ButtonDownloadText>Download Prévia</ButtonDownloadText>
-              </ButtonDownload>
-            </BookInfo>
-          </Book>
+          <ItemBook item={item} viewable={viewable} navigation={navigation} />
         )}
       />
     </Container>

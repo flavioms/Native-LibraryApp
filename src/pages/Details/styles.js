@@ -14,6 +14,7 @@ export const Title = styled.Text`
   font-size: 18px;
   font-weight: 500;
   color: #f7ab21;
+  font-family: 'Rubik';
 `;
 
 export const BookInfo = styled.View`
@@ -42,11 +43,13 @@ export const BookText = styled.View`
 export const BookTextLabel = styled.Text`
   font-weight: 600;
   text-transform: capitalize;
+  font-family: 'Rubik';
 `;
 
 export const BookTextValue = styled.Text`
   font-weight: 500;
   text-transform: uppercase;
+  font-family: 'Rubik';
   margin-left: 1%;
 `;
 
@@ -63,24 +66,7 @@ export const BookDescription = styled.Text`
   align-items: flex-start;
   font-size: 14px;
   margin-bottom: ${height * 0.05};
-`;
-
-export const ButtonDownload = styled(TouchableOpacity)`
-  width: 100%;
-  max-width: ${width * 0.55};
-  margin: 0 auto;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #f7ab21;
-  border-radius: 30px;
-`;
-export const ButtonDownloadText = styled.Text`
-  text-transform: uppercase;
-  color: #f7ab21;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 6px;
+  font-family: 'Rubik';
 `;
 
 export const BookFooter = styled.View`
@@ -90,6 +76,7 @@ export const BookFooter = styled.View`
 export const FooterTitle = styled.Text`
   font-size: 14px;
   margin-bottom: ${height * 0.02};
+  font-family: 'Rubik';
 `;
 
 export const Price = styled.View`
@@ -107,13 +94,16 @@ export const PriceGroup = styled.View`
 
 export const PriceCurrency = styled.Text`
   font-size: 20px;
+  font-family: 'Rubik';
 `;
 export const PriceValue = styled.Text`
   font-size: 35px;
   margin-left: 6px;
+  font-family: 'Rubik';
 `;
 export const PriceCondition = styled.Text`
   font-size: 12px;
+  font-family: 'Rubik';
 `;
 export const ButtonBuy = styled(TouchableOpacity)`
   width: 100%;
@@ -134,6 +124,7 @@ export const ButtonBuyText = styled.Text`
   font-size: 14px;
   font-weight: 600;
   padding: 6px;
+  font-family: 'Rubik';
 `;
 
 export const Loading = styled.ActivityIndicator.attrs({
