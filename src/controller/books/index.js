@@ -3,7 +3,7 @@ import api from '~/services/api';
 export const AllBooks = async page => {
   const response = await api.get('volumes', {
     params: {
-      q: 'historia',
+      q: 'conto',
       langRestrict: 'pt',
       orderBy: 'relevance',
       projection: 'full',

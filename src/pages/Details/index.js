@@ -4,6 +4,7 @@ import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {FindBook} from '~/controller/books/index';
 import ButtonOutline from '~/components/ButtonOutline';
+import BookPNG from '~/assets/books.png';
 import {
   Container,
   Title,
@@ -55,7 +56,11 @@ export default function Details({navigation}) {
           <BookInfo>
             <BookImage
               resizeMode="stretch"
-              source={{uri: book.volumeInfo.imageLinks.medium}}
+              source={
+                book.volumeInfo.imageLinks
+                  ? {uri: book.volumeInfo.imageLinks.medium}
+                  : BookPNG
+              }
             />
             <BookDetails>
               <BookText>
